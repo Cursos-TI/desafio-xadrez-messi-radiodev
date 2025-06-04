@@ -1,43 +1,61 @@
 #include <stdio.h>
 
-int main () {
-    int torre, bispo=1, rainha=1, i, j=1, k=1;
-
-    // movumentos das peças
-    // torre se move em linha reta ou vertical, aparecer 5 casas para a direita
-    // bispo 5 casas para diagonal para representar a diagonal para a cima e para a esquerda
-    // rainha todas as direções se move 8 para a esquerda
-    // cavalo se move em L, duas casas para baixo e uma para a direita
-
-    for (torre = 1; torre <= 5; torre++) {
-        printf ("Torre escolhe andar %d casas para a direita\n", torre);
-    }
-
-    do {
-        printf ("Bispo se move em diagonal escolhe andar, para cima e para a esquerda %d casas\n",  bispo++);
-    } while (bispo <= 5);
-
-    while (rainha <= 8) {
-        printf ("Rainha escolhe andar %d casas para a esquerda\n", rainha++);
-    }
-
-    printf ("\n");
-
-    // triplo loop aninhado com for, while e do while
-    for (i = 1; i <= 1; i++) {
-        printf("Cavalo se move em L: passo 1: Baixo\n");
+void responsiveLoopCavalo() {
+    for (int i = 0; i < 10; i += (i % 2 == 0) ? 1 : 2) {
         
-        while (j <= 1) {
-            printf("Cavalo se move em L: passo 2: Baixo\n");
-            j++; 
-            
-            do {
-                printf("Cavalo se move em L: passo 3: Direita\n");
-                k++;
-            } while (k <= 1);
-            // incrementos para não haver loop infinito
+        if (i == 0 || i == 1) {
+            printf("Cima\n");
+        } else if (i == 3) {
+            printf("Direita\n");
+            break;  // interrompe o loop quando i for igual a 3, não continuando até o 10.
         }
     }
-    
+}
 
+void responsiveLoopBispo() {
+    for (int i = 0; i < 5; i++) {  // repete o loop 5 vezes
+        
+        for (int v = 0; v < 1; v++) {  // vertical 1 vez
+            printf("Cima\n");
+        }
+        
+        for (int h = 0; h < 1; h++) {  // horizontal 1 vez
+            printf("Esquerda\n");
+        }
+        
+    }
+}
+
+void responsiveLoopRainha() {
+    for (int i = 0; i < 8; i++) {
+        printf("Esquerda\n");
+    }
+}
+
+void responsiveLoopTorre() {
+    for (int i = 5; i > 0; i--) {
+        printf("Cima\n");
+    }
+}
+
+int main() {
+    printf("Movimentação do Cavalo:\n");
+    responsiveLoopCavalo();
+
+    printf("\n");
+
+    printf("Movimentação do Bispo:\n");
+    responsiveLoopBispo();
+
+    printf("\n");
+
+    printf("Movimentação da Rainha:\n");
+    responsiveLoopRainha();
+
+    printf("\n");
+
+    printf("Movimentação da Torre:\n");
+    responsiveLoopTorre();
+
+    return 0;
 }
